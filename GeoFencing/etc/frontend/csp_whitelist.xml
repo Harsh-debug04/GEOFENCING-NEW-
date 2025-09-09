@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<whitelist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Csp:etc/csp_whitelist.xsd">
+    <policies>
+        <policy id="default-src">
+            <values>
+                <value id="google-maps" type="host">maps.googleapis.com</value>
+                <value id="google-fonts" type="host">fonts.googleapis.com</value>
+                <value id="gstatic" type="host">fonts.gstatic.com</value>
+                <value id="maps-gstatic" type="host">maps.gstatic.com</value>
+            </values>
+        </policy>
+        <policy id="script-src">
+            <values>
+                <value id="maps-js" type="host">maps.googleapis.com</value>
+            </values>
+        </policy>
+        <policy id="connect-src">
+            <values>
+                <value id="openstreetmap" type="host">https://nominatim.openstreetmap.org</value>
+            </values>
+        </policy>
+        <policy id="connect-src">
+
+        <values>
+                <value id="openstreetmap" type="host">https://api.postalpincode.in</value>
+            </values>
+        </policy>
+    </policies>
+</whitelist>
