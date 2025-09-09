@@ -1,12 +1,12 @@
 <?php
 /**
- * Webkul Software.
+ * AgriCart Software.
  *
- * @category  Webkul=
- * @package   Webkul_AgoraeCustomization
- * @author    Webkul Software Private Limited
- * @copyright Webkul Software Private Limited (https://webkul.com)
- * @license   https://store.webkul.com/license.html
+ * @category  AgriCart
+ * @package   AgriCart_GeoFencing
+ * @author    AgriCart Software Private Limited
+ * @copyright AgriCart Software Private Limited (https://agricart.com)
+ * @license   https://store.agricart.com/license.html
  */
 
 \Magento\Framework\Component\ComponentRegistrar::register(

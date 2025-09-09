@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <geofencing>
+            <general>
+                <enable>1</enable>
+                <google_api_key></google_api_key>
+            </general>
+        </geofencing>
+    </default>
+</config>
