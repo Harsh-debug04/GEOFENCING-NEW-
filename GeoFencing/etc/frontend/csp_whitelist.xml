@@ -18,12 +18,7 @@
         <policy id="connect-src">
             <values>
                 <value id="openstreetmap" type="host">https://nominatim.openstreetmap.org</value>
-            </values>
-        </policy>
-        <policy id="connect-src">
-
-        <values>
-                <value id="openstreetmap" type="host">https://api.postalpincode.in</value>
+                <value id="postalpincode" type="host">https://api.postalpincode.in</value>
             </values>
         </policy>
     </policies>

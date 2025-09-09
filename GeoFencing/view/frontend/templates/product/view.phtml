@@ -1,0 +1,29 @@
+<?php
+/** @var \AgriCart\GeoFencing\Block\Product\View $block */
+?>
+<?php if ($block->isModuleEnabled() && $block->getGeoLocation()): ?>
+<div class="geofencing-container">
+    <div class="pincode-checker">
+        <label for="pincode"><?= $block->escapeHtml(__('Check Availability')) ?></label>
+        <input type="text" id="pincode" name="pincode" placeholder="<?= $block->escapeHtmlAttr(__('Enter your pincode')) ?>" />
+        <button id="check-pincode-btn"><?= $block->escapeHtml(__('Check')) ?></button>
+        <div id="pincode-result"></div>
+    </div>
+    <div class="map-toggle">
+        <a href="#" id="toggle-map"><?= $block->escapeHtml(__('Show/Hide Map')) ?></a>
+    </div>
+    <div id="map-container" style="display:none; height: 300px; width: 100%;"></div>
+</div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<?= $block->escapeJs($block->getGoogleApiKey()) ?>"></script>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "AgriCart_GeoFencing/js/view": {
+                "geoLocation": "<?= $block->escapeJs($block->getGeoLocation()) ?>",
+                "checkPincodeUrl": "<?= $block->escapeUrl($block->getUrl('geofencing/pincode/check')) ?>"
+            }
+        }
+    }
+</script>
+<?php endif; ?>
