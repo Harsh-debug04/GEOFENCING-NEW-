@@ -20,10 +20,10 @@ This module provides geofencing functionality for products in Magento 2. It allo
     - Enter a list of locations. **Important: Add one location per line.**
     - **Example:**
       ```
-      New York, NY
-      90210
-      London
-      75001
+      NEW Delhi
+      00015
+      Jaipur
+      300385
       ```
     - Save the product.
 
