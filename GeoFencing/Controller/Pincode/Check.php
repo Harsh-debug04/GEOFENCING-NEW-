@@ -4,20 +4,16 @@ namespace AgriCart\GeoFencing\Controller\Pincode;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\Result\JsonFactory;
-use Magento\Framework\HTTP\Client\Curl;
 
 class Check extends Action
 {
     protected $resultJsonFactory;
-    protected $curl;
 
     public function __construct(
         Context $context,
-        JsonFactory $resultJsonFactory,
-        Curl $curl
+        JsonFactory $resultJsonFactory
     ) {
         $this->resultJsonFactory = $resultJsonFactory;
-        $this->curl = $curl;
         parent::__construct($context);
     }
 
@@ -31,28 +27,16 @@ class Check extends Action
             return $result->setData(['success' => false, 'message' => __('Invalid request.')]);
         }
 
-        try {
-            $this->curl->get('https://api.postalpincode.in/pincode/' . $pincode);
-            $response = json_decode($this->curl->getBody(), true);
+        // Normalize line endings and split into an array
+        $allowedPincodes = preg_split('/[\r\n]+/', $geoLocation, -1, PREG_SPLIT_NO_EMPTY);
 
-            if ($response && isset($response[0]['Status']) && $response[0]['Status'] == 'Success') {
-                $postOffice = $response[0]['PostOffice'][0];
-                $locationName = strtolower($postOffice['Name']);
-                $locationDistrict = strtolower($postOffice['District']);
-                $locationState = strtolower($postOffice['State']);
+        // Trim whitespace from each pincode
+        $allowedPincodes = array_map('trim', $allowedPincodes);
 
-                if (stripos(strtolower($geoLocation), $locationName) !== false ||
-                    stripos(strtolower($geoLocation), $locationDistrict) !== false ||
-                    stripos(strtolower($geoLocation), $locationState) !== false) {
-                    return $result->setData(['success' => true, 'message' => __('Product is available in your location.')]);
-                } else {
-                    return $result->setData(['success' => false, 'message' => __('Product is not available in your location.')]);
-                }
-            } else {
-                return $result->setData(['success' => false, 'message' => __('Could not verify the pincode.')]);
-            }
-        } catch (\Exception $e) {
-            return $result->setData(['success' => false, 'message' => __('An error occurred while checking the pincode.')]);
+        if (in_array($pincode, $allowedPincodes)) {
+            return $result->setData(['success' => true, 'message' => __('Product is available in your location.')]);
+        } else {
+            return $result->setData(['success' => false, 'message' => __('Product is not available in your location.')]);
         }
     }
 }
