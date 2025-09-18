@@ -54,4 +54,9 @@ class View extends ProductView
     {
         return $this->_helper->isModuleEnabled();
     }
+
+    public function isMiniMapEnabled()
+    {
+        return $this->_helper->isMiniMapEnabled();
+    }
 }

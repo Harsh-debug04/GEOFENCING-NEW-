@@ -29,4 +29,9 @@ class Data extends AbstractHelper
     {
         return $this->getGeneralConfig('google_api_key', $storeId);
     }
+
+    public function isMiniMapEnabled($storeId = null)
+    {
+        return $this->getGeneralConfig('enable_mini_map', $storeId);
+    }
 }
