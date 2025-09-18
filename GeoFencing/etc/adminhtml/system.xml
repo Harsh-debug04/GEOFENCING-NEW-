@@ -1,13 +1,26 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:config:Magento_Config:etc/system_file.xsd">
     <system>
-        <section id="geofencing_test" translate="label" type="text" sortOrder="999" showInDefault="1" showInWebsite="1" showInStore="1">
-            <label>GeoFencing Test</label>
-            <tab>advanced</tab>
-            <group id="general_test" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Test Group</label>
-                <field id="test_field" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Test Field</label>
+        <tab id="agricart" translate="label" sortOrder="100">
+            <label>AgriCart</label>
+        </tab>
+        <section id="geofencing" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>GeoFencing</label>
+            <tab>agricart</tab>
+            <resource>AgriCart_GeoFencing::config_geofencing</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Configuration</label>
+                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Module</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="google_api_key" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Google Maps API Key</label>
+                </field>
+                <field id="enable_mini_map" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Mini Map</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
             </group>
         </section>
