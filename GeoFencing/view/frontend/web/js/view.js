@@ -4,32 +4,36 @@ define(['jquery', 'uiComponent', 'mage/url'], function ($, Component, url) {
     return Component.extend({
         defaults: {
             geoLocation: '',
-            checkPincodeUrl: ''
+            checkPincodeUrl: '',
+            isMapEnabled: false
         },
 
         initialize: function (config) {
             this._super();
             this.geoLocation = config.geoLocation;
             this.checkPincodeUrl = config.checkPincodeUrl;
+            this.isMapEnabled = config.isMapEnabled;
 
             var self = this;
 
-            // Wait for the Google Maps script to be loaded
-            var checkGoogle = setInterval(function() {
-                if (typeof google !== 'undefined' && typeof google.maps !== 'undefined') {
-                    clearInterval(checkGoogle);
-                    self.initMap();
-                }
-            }, 100);
+            if (this.isMapEnabled) {
+                // Wait for the Google Maps script to be loaded
+                var checkGoogle = setInterval(function() {
+                    if (typeof google !== 'undefined' && typeof google.maps !== 'undefined') {
+                        clearInterval(checkGoogle);
+                        self.initMap();
+                    }
+                }, 100);
+
+                $('#toggle-map').on('click', function (e) {
+                    e.preventDefault();
+                    $('#map-container').toggle();
+                });
+            }
 
 
             $('#check-pincode-btn').on('click', function () {
                 self.checkPincode();
-            });
-
-            $('#toggle-map').on('click', function (e) {
-                e.preventDefault();
-                $('#map-container').toggle();
             });
         },
 

@@ -9,19 +9,24 @@
         <button id="check-pincode-btn"><?= $block->escapeHtml(__('Check')) ?></button>
         <div id="pincode-result"></div>
     </div>
+    <?php if ($block->isMiniMapEnabled()): ?>
     <div class="map-toggle">
         <a href="#" id="toggle-map"><?= $block->escapeHtml(__('Show/Hide Map')) ?></a>
     </div>
     <div id="map-container" style="display:none; height: 300px; width: 100%;"></div>
+    <?php endif; ?>
 </div>
 
+<?php if ($block->isMiniMapEnabled()): ?>
 <script src="https://maps.googleapis.com/maps/api/js?key=<?= $block->escapeJs($block->getGoogleApiKey()) ?>"></script>
+<?php endif; ?>
 <script type="text/x-magento-init">
     {
         "*": {
             "AgriCart_GeoFencing/js/view": {
                 "geoLocation": "<?= $block->escapeJs($block->getGeoLocation()) ?>",
-                "checkPincodeUrl": "<?= $block->escapeUrl($block->getUrl('geofencing/pincode/check')) ?>"
+                "checkPincodeUrl": "<?= $block->escapeUrl($block->getUrl('geofencing/pincode/check')) ?>",
+                "isMapEnabled": <?= $block->isMiniMapEnabled() ? 'true' : 'false' ?>
             }
         }
     }
